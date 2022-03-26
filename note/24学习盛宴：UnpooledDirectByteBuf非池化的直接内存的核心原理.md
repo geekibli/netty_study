@@ -9,8 +9,9 @@
         System.out.println(byteBuf);
     }
 ```
-这个底层其实是java NIO的DirectByteBuffer ，这个应该前面也有介绍过。
-![](https://oscimg.oschina.net/oscnet/up-dd6be429c23712cbcdc91e9800f0d16993e.png)  
+这个底层其实是java NIO的DirectByteBuffer ，这个应该前面也有介绍过。  
+
+<img src="https://oscimg.oschina.net/oscnet/up-dd6be429c23712cbcdc91e9800f0d16993e.png" width=950 height=456> 
 
 我们直接进入到`UnpooledByteBufAllocator.DEFAULT.directBuffer` 方法中：   
 ```java
@@ -43,7 +44,11 @@ protected ByteBuf newDirectBuffer(int initialCapacity, int maxCapacity) {
     }
 ```
 这里按照是否支持unsafe，分成了两种场景。   
-![](https://oscimg.oschina.net/oscnet/up-b05b5ea0a60b745b9a02070ebe7197adb91.png)  
+
+- 支持unsafe ： JVM
+
+- 不支持unsafe ： 安卓的vm
+
 
 ## PlatformDependent 和 PlatformDependent0
 
@@ -81,9 +86,10 @@ public UnpooledDirectByteBuf(ByteBufAllocator alloc, int initialCapacity, int ma
 
 ![](https://oscimg.oschina.net/oscnet/up-a5be315e544cc002bfa673fe426f199545e.png)
 
-![](https://oscimg.oschina.net/oscnet/up-a3b248d4f98c71e318bc5df692f9e1b3620.png)
+<img src="https://oscimg.oschina.net/oscnet/up-a3b248d4f98c71e318bc5df692f9e1b3620.png" width=600 height=246> <br/>
 
-![](https://oscimg.oschina.net/oscnet/up-068ba6702d877e0df113f50962af3d3277a.png)
+<img src="https://oscimg.oschina.net/oscnet/up-068ba6702d877e0df113f50962af3d3277a.png" width=600 height=166>
+
 
 ```java
 public ByteBuf setBytes(int index, byte[] src, int srcIndex, int length) {
@@ -202,11 +208,20 @@ protected ByteBuf newDirectBuffer(int initialCapacity, int maxCapacity) {
 
 ## 什么是cleaner
 
-![](https://oscimg.oschina.net/oscnet/up-214f88696b85ad9906b6c00934fe92402d0.png)
+cleaner 用来主动释放内存， JDK中DirectByteBuffer中提供了cleaner来**主动**释放内存。 和Unsafe的freeMemory方法类似。
+
+Cleaner是个虚引用，DirectByteBuffer创建它的时候，会将自己放入虚引用的构造函数中，如果这个DirectByteBuffer被回收了（
+
+无人再引用这个cleaner），此时，cleaner会被jvm挂到一个Pending上，专门有一个ReferenceHandler会死循环扫描这个List，执行
+
+Reference的tryHandlePending方法，这个方法会调用pending的clean方法，完成内存的回收。
+
 
 ## cleaner的性能问题
 
-![](https://oscimg.oschina.net/oscnet/up-37b9465405ba8b743dc917fa5d1dd8a31d7.png)
+在运行的时候，cleaner回收内存，有一定的滞后性。
+
+nocleaner 无论是在内存申请分配还是在内存回收上，都要比hasCleaner要好，所以，Netty 4 引入了noCleaner策略。
 
 
 ## noCleaner的ByteBuf的构造器
@@ -293,4 +308,25 @@ static ByteBuffer newDirectBuffer(long address, int capacity) {
 
 ![](https://oscimg.oschina.net/oscnet/up-fec9f7d6a52e2c5bc3e8619e1f6587464d9.png)
 
-![](https://oscimg.oschina.net/oscnet/up-fd466f507da0439c6cc9c032a1adf8a3528.png)
+
+## 直接内存和队内存的对比
+
+
+- 堆缓冲区可以不用池化
+
+堆缓冲区可以将数据直接分配在JVM的堆内存航，它能在没有池化的情况下快速的分配和回收。
+
+- 直接内存不池化会有性能问题
+
+直接缓冲区是另一种ByteBuf模式，它把数据分配在非堆空间，非JAVA运行时数据区，垃圾收集器不会处理这部分内存。
+
+- 直接内存的优势
+
+它的优势在于网络传输的场景下，能够减少一次内存的复制，其劣势在于内存的分配和回收性能比较高，因为会涉及到底层系统调用malloc
+
+**所以：**
+
+通常在IO通信的场景下需要读写缓冲区使用DirectByteBuf,但是需要进行池化，因为性能相差几十倍。
+
+后端业务的消息的编解码则可以使用HeapByteBuf,可以不进行池化，可以达到很好的性能。
+
