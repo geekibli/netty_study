@@ -17,7 +17,21 @@
 - [26.百万级别聊天室，服务端channel是如何存放的（1）](https://github.com/geekibli/netty/blob/gaolei/note/26.百万级别聊天室，服务端channel是如何存放的（1）.md)
 - [27.百万级别聊天室，服务端channel是如何存放的（2）](https://github.com/geekibli/netty/blob/gaolei/note/27.百万级别聊天室，服务端channel是如何存放的（2）.md)
 - [28.百万级别聊天室，服务端channel是如何存放的（3）](https://github.com/geekibli/netty/blob/gaolei/note/28.百万级别聊天室，服务端channel是如何存放的（3）.md)
+- [29.Netty灵魂实验%20：本地_100W连接_超_高并发实验，瞬间提升Java内力](https://github.com/geekibli/netty/blob/gaolei/note/29.Netty灵魂实验%20：本地_100W连接_超_高并发实验，瞬间提升Java内力.md)
+- [30.彻底明白：select、poll底层系统调用的核心原理](https://github.com/geekibli/netty/blob/gaolei/note/30.彻底明白：select、poll%20底层系统调用的核心原理.md)
+- [31.彻底明白：epoll底层系统调用的核心原理](https://github.com/geekibli/netty/blob/gaolei/note/31.彻底明白：epoll%20底层系统调用的核心原理.md)
+- [32.核心解密：Linux的ET高速模式与Netty的高速Selector](https://github.com/geekibli/netty/blob/gaolei/note/32.核心解密：Linux的ET高速模式与Netty的高速Selector.md)
+- [33.彻底解密：IO事件的核心原理](https://github.com/geekibli/netty/blob/gaolei/note/33.彻底解密：IO事件的核心原理.md)
+- [34.彻底解密：SelectionKey (选择键) 核心原理]()
+- [35.彻底明白：Selector(选择器) 核心原理]()
+- [36.最强揭秘：Selector.open() 选择器打开的底层原理]()
+- [37.最强揭秘：Selector.register() 注册的底层原理]()
+- [38.最强揭秘：Selector.select() 事件查询的底层原理]()
+- [39.最强揭秘：Selector.wakeup() 唤醒的底层原理]()
+- []()
 - []()
 
 
 ## 其他资料
+
+https://dongzl.github.io/netty-handbook/#/README
