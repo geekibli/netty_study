@@ -1,8 +1,74 @@
 # Netty
 
+[**官网地址**](https://netty.io/)
+
+## 什么是Netty?
+
+Netty is an asynchronous event-driven network application framework for rapid development of maintainable high performance protocol servers & clients.
+
+> Netty是一个基于时间驱动的异步网络应用框架，应用于开发可维护的，高性能协议的服务端和客户端。
+
+<img src="https://oscimg.oschina.net/oscnet/up-ed74a2022b9f89d51bcf32c18aa755120c9.png" width=550 height=280>
 
 
-## 各章节内容
+Netty is a NIO client server framework which enables quick and easy development of network applications such as protocol servers and clients. It greatly simplifies and streamlines network programming such as TCP and UDP socket server.
+
+>  Netty是一个NIO客户机-服务器框架，它支持快速、轻松地开发网络应用程序，如协议服务器和客户机。它极大地简化了网络编程，如TCP和UDP套接字服务器。
+
+'Quick and easy' doesn't mean that a resulting application will suffer from a maintainability or a performance issue. Netty has been designed carefully with the experiences earned from the implementation of a lot of protocols such as FTP, SMTP, HTTP, and various binary and text-based legacy protocols. As a result, Netty has succeeded to find a way to achieve ease of development, performance, stability, and flexibility without a compromise.
+
+> “快速简便”并不意味着最终的应用程序会受到可维护性或性能问题的影响。Netty经过精心设计，积累了许多协议（如FTP、SMTP、HTTP以及各种二进制和基于文本的遗留协议）的实施经验。 因此，Netty成功地找到了一种不妥协地实现易开发性、性能、稳定性和灵活性的方法。
+
+
+
+## Features
+
+这部分应该都是可以看懂的，就不翻译了。比较基础的专业单词。
+
+### Design
+- Unified API for various transport types - blocking and non-blocking socket
+- Based on a flexible and extensible event model which allows clear separation of concerns
+- Highly customizable thread model - single thread, one or more thread pools such as SEDA
+- True connectionless datagram socket support (since 3.1)
+
+### Ease of use
+- Well-documented Javadoc, user guide and examples
+- No additional dependencies, JDK 5 (Netty 3.x) or 6 (Netty 4.x) is enough
+	- Note: Some components such as HTTP/2 might have more requirements. Please refer to the Requirements page for more information.
+
+### Performance
+- Better throughput, lower latency
+- Less resource consumption
+- Minimized unnecessary memory copy
+
+### Security
+- Complete SSL/TLS and StartTLS support
+
+### Community
+- Release early, release often
+- The author has been writing similar frameworks since 2003 and he still finds your feed back precious!
+
+
+## 使用领域
+
+- 构建高性能、低时延的各种 Java 中间件，例如 **RPC**、**MQ**、分布式服务框架、ESB 消息总线等，Netty 主要作为基础通信框架提供高性能、低时延的通信服务；
+- 公有或者私有协议栈的基础通信框架，例如可以基于 Netty 构建异步、高性能的 WebSocket 协议栈；
+- 各领域应用，例如大数据、游戏等，Netty 作为高性能的通信框架用于内部各模块的数据分发、传输和汇总等，实现模块之间高性能通信。
+
+
+## 前置知识
+
+- Java多线程编程，这部分必须要掌握的，否则难以理解Netty。（异步，线程池，线程通信，阻塞队列等）
+- 计算机网络（起码熟悉TCP通信）
+- 操作系统（了解操作系统基本组件，内存管理，进程调度）
+- JVM, 了解运行时数据区，垃圾收集概念
+- Java IO, BIO/NIO,能够看懂基本的API使用
+
+
+
+## Netty学习由浅到深
+
+> 下面主要但不限于，根据 [**架构师尼恩**](https://www.cnblogs.com/crazymakercircle/) 的Nerry课程来学习的，特此声明。
 
 - [16.彻底明白内核态、用户态、内核空间和用户空间](https://github.com/geekibli/netty/blob/gaolei/note/16.彻底明白内核态、用户态、内核空间和用户空间.md)
 - [17.彻底理解java零拷贝](https://github.com/geekibli/netty/blob/gaolei/note/17.彻底明白java零拷贝.md)
@@ -34,4 +100,11 @@
 
 ## 其他资料
 
-https://dongzl.github.io/netty-handbook/#/README
+- https://dongzl.github.io/netty-handbook/#/README
+- https://waylau.com/essential-netty-in-action/index.html
+
+
+
+
+
+
