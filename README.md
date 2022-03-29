@@ -88,14 +88,20 @@ Netty is a NIO client server framework which enables quick and easy development 
 - [31.彻底明白：epoll底层系统调用的核心原理](https://github.com/geekibli/netty/blob/gaolei/note/31.彻底明白：epoll%20底层系统调用的核心原理.md)
 - [32.核心解密：Linux的ET高速模式与Netty的高速Selector](https://github.com/geekibli/netty/blob/gaolei/note/32.核心解密：Linux的ET高速模式与Netty的高速Selector.md)
 - [33.彻底解密：IO事件的核心原理](https://github.com/geekibli/netty/blob/gaolei/note/33.彻底解密：IO事件的核心原理.md)
-- [34.彻底解密：SelectionKey (选择键) 核心原理]()
+<!-- - [34.彻底解密：SelectionKey (选择键) 核心原理]()
 - [35.彻底明白：Selector(选择器) 核心原理]()
 - [36.最强揭秘：Selector.open() 选择器打开的底层原理]()
 - [37.最强揭秘：Selector.register() 注册的底层原理]()
 - [38.最强揭秘：Selector.select() 事件查询的底层原理]()
-- [39.最强揭秘：Selector.wakeup() 唤醒的底层原理]()
-- []()
-- []()
+- [39.最强揭秘：Selector.wakeup() 唤醒的底层原理]() -->
+- [34.彻底解密：SelectionKey(选择键)核心原理.md](https://github.com/geekibli/netty/blob/gaolei/note/34.彻底解密：SelectionKey%20(选择键)%20核心原理.md)
+- [40.从底揭秘：Thread.sleep是不是占用CPU](https://github.com/geekibli/netty/blob/gaolei/note/40.从底揭秘：Thread.sleep是不是占用CPU.md)
+- [41.线程状态的本质和由来](https://github.com/geekibli/netty/blob/gaolei/note/41.线程状态的本质和由来.md)
+- [43.Netty开发必备：EmbeddedChannel嵌入式通道](https://github.com/geekibli/netty/blob/gaolei/note/43.Netty开发必备：EmbeddedChannel嵌入式通道.md)
+- [44.基础知识：ChannelPipeline流水线](https://github.com/geekibli/netty/blob/gaolei/note/44.基础知识：ChannelPipeline流水线.md)
+- [45.基础组件的使用：ChannelInboundHandler入站处理器](https://github.com/geekibli/netty/blob/gaolei/note/45.基础组件的使用：ChannelInboundHandler入站处理器.md)
+- [46.基础实战：Pipeline入站处理流程](https://github.com/geekibli/netty/blob/gaolei/note/46.基础实战：Pipeline入站处理流程.md)
+- [47.基础实战：Pipeline出站处理流程](https://github.com/geekibli/netty/blob/gaolei/note/47.基础实战：Pipeline出站处理流程.md)
 
 
 ## 其他资料
