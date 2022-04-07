@@ -102,9 +102,30 @@ Netty is a NIO client server framework which enables quick and easy development 
 - [45.基础组件的使用：ChannelInboundHandler入站处理器](https://github.com/geekibli/netty/blob/gaolei/note/45.基础组件的使用：ChannelInboundHandler入站处理器.md)
 - [46.基础实战：Pipeline入站处理流程](https://github.com/geekibli/netty/blob/gaolei/note/46.基础实战：Pipeline入站处理流程.md)
 - [47.基础实战：Pipeline出站处理流程](https://github.com/geekibli/netty/blob/gaolei/note/47.基础实战：Pipeline出站处理流程.md)
+- [48.核心实战：JSON报文的入站处理](https://github.com/geekibli/netty/blob/gaolei/note/48.核心实战：JSON报文的入站处理.md)
+- [49.核心实战：JSON报文的出站处理](https://github.com/geekibli/netty/blob/gaolei/note/49.核心实战：JSON报文的出站处理.md)
+- [50.基础实战：protobuf协议的使用](https://github.com/geekibli/netty/blob/gaolei/note/50.基础实战：protobuf协议的使用.md)
+- [51.基础实战：protobuf入站报文的实现](https://github.com/geekibli/netty/blob/gaolei/note/51.基础实战：protobuf入站报文的实现.md)
+- [52.基础实战：protobuf出站报文的处理](https://github.com/geekibli/netty/blob/gaolei/note/52.基础实战：protobuf出站报文的处理.md)
+- [53.单体IM结构设计](https://github.com/geekibli/netty/blob/gaolei/note/53.单体IM结构设计.md)
+- [54.单体IM基础实战：命令收集器](https://github.com/geekibli/netty/blob/gaolei/note/54.单体IM基础实战：命令收集器.md)
+- [55.单体IM基础实战：消息构造器](https://github.com/geekibli/netty/blob/gaolei/note/55.单体IM基础实战：消息构造器.md)
+- [56.单体IM基础实战：消息发送器](https://github.com/geekibli/netty/blob/gaolei/note/56.单体IM基础实战：消息发送器.md)
+- [57.单体IM基础实战：响应处理器](https://github.com/geekibli/netty/blob/gaolei/note/57.单体IM基础实战：响应处理器.md)
+
+## 其他笔记
+
+- [SpringBoot集成protobuf实战](https://github.com/geekibli/netty/blob/gaolei/note/SpringBoot集成protobuf实战.md)
+- [mac安装protobuf教程](https://github.com/geekibli/netty/blob/gaolei/note/mac安装protobuf教程.md)
 
 
-## 其他资料
+## Netty面试题
+
+- [10道Java高级必备的面试题](https://github.com/geekibli/netty/blob/gaolei/interview/10道Java高级必备的面试题.md)
+- [10道Netty高级面试题](https://github.com/geekibli/netty/blob/gaolei/interview/10道Netty高级面试题.md)
+
+
+## 其他链接
 
 - https://dongzl.github.io/netty-handbook/#/README
 - https://waylau.com/essential-netty-in-action/index.html
