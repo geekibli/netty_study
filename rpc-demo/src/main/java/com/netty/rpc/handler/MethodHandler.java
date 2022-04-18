@@ -10,6 +10,8 @@ import io.netty.handler.codec.LengthFieldPrepender;
 import io.netty.handler.codec.serialization.ClassResolvers;
 import io.netty.handler.codec.serialization.ObjectDecoder;
 import io.netty.handler.codec.serialization.ObjectEncoder;
+import io.netty.handler.logging.LogLevel;
+import io.netty.handler.logging.LoggingHandler;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -57,24 +59,25 @@ public class MethodHandler implements InvocationHandler {
                         protected void initChannel(Channel ch) throws Exception {
                             //接收课客户端请求的处理流程
                             ChannelPipeline pipeline = ch.pipeline();
-
+                            pipeline.addLast(new LoggingHandler(LogLevel.INFO));
                             int fieldLength = 4;
                             //通用解码器设置
                             pipeline.addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, fieldLength, 0, fieldLength));
                             //通用编码器
                             pipeline.addLast(new LengthFieldPrepender(fieldLength));
-                            //对象编码器
-                            pipeline.addLast("encoder", new ObjectEncoder());
                             //对象解码器
                             pipeline.addLast("decoder", new ObjectDecoder(Integer.MAX_VALUE, ClassResolvers.cacheDisabled(null)));
-
+                            //对象编码器
+                            pipeline.addLast("encoder", new ObjectEncoder());
                             pipeline.addLast("handler", consumerHandler);
                         }
                     })
                     .option(ChannelOption.TCP_NODELAY, true);
 
             ChannelFuture future = client.connect("localhost", 9090).sync();
+            System.out.println("客户端链接成功...");
             future.channel().writeAndFlush(msg).sync();
+            System.out.println("客户端数据发送...");
             future.channel().closeFuture().sync();
         } catch (Exception e) {
             e.printStackTrace();

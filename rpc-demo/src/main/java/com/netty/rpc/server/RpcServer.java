@@ -27,15 +27,16 @@ public class RpcServer {
     public static void main(String[] args) throws InterruptedException {
 
         ServerBootstrap serverBootstrap = new ServerBootstrap();
-        serverBootstrap.group(new NioEventLoopGroup())
+        NioEventLoopGroup boss = new NioEventLoopGroup(1);
+        NioEventLoopGroup worker = new NioEventLoopGroup();
+        serverBootstrap.group(boss, worker)
                 .channel(NioServerSocketChannel.class)
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
                     @Override
                     protected void initChannel(NioSocketChannel nioSocketChannel) throws Exception {
                         ChannelPipeline pipeline = nioSocketChannel.pipeline();
-                        pipeline.addLast(new LoggingHandler(LogLevel.DEBUG));
                         int fieldLength = 4;
-                        //通用解码器设置
+                        pipeline.addLast(new LoggingHandler(LogLevel.INFO));
                         pipeline.addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, fieldLength, 0, fieldLength));
                         //通用编码器
                         pipeline.addLast(new LengthFieldPrepender(fieldLength));
@@ -43,7 +44,6 @@ public class RpcServer {
                         pipeline.addLast("encoder", new ObjectEncoder());
                         //对象解码器
                         pipeline.addLast("decoder", new ObjectDecoder(Integer.MAX_VALUE, ClassResolvers.cacheDisabled(null)));
-
                         pipeline.addLast("handler", new RpcFactoryHandler());
 
                     }

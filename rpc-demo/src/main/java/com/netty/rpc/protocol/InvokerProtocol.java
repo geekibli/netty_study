@@ -2,13 +2,15 @@ package com.netty.rpc.protocol;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @Author gaolei
  * @Date 2022/4/14 下午12:52
  * @Version 1.0
  */
 @Data
-public class InvokerProtocol {
+public class InvokerProtocol implements Serializable {
 
     // 基于二进制流调用协议
 

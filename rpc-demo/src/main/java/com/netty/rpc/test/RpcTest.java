@@ -16,17 +16,18 @@ public class RpcTest {
 
 
     public static void main(String[] args) {
-        IUserService service = RpcClient.create(UserServiceImpl.class);
+        System.out.println("test start");
+        IUserService service = RpcClient.create(IUserService.class);
 
+        System.out.println("invoke 111");
         String userName = service.getUserName();
         System.out.println("userName : " + userName);
 
+        System.out.println("invoke 333");
         String name = service.setUserName("gaolei");
         System.out.println("name" + name);
 
     }
-
-
 
 
 }

@@ -43,6 +43,8 @@ public class RpcFactoryHandler extends ChannelInboundHandlerAdapter {
             ctx.write(result);
             ctx.flush();
             ctx.close();
+        }else{
+            System.out.println("not found  " + request.getClassName());
         }
     }
 
