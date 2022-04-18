@@ -27,7 +27,7 @@ public class RpcFactoryHandler extends ChannelInboundHandlerAdapter {
 
     public RpcFactoryHandler() {
         // 1、扫描所有需要注册的类
-        scannerClass("com.ibli.netty.rpc.provider");
+        scannerClass("com.netty.rpc.api.impl");
         // 执行注册
         doRegistry();
     }
@@ -74,15 +74,16 @@ public class RpcFactoryHandler extends ChannelInboundHandlerAdapter {
     }
 
     private void scannerClass(String packageName) {
-        URL url = this.getClass().getClassLoader().getResource(packageName.replaceAll("\\.", "/"));
-        File dir = new File(url.getFile());
-        for (File file : dir.listFiles()) {
-            if (file.isDirectory()) {
-                scannerClass(packageName + "." + file.getName());
-            } else {
-                classNameList.add(packageName + "." + file.getName().replace(".class", "").trim());
-            }
-        }
+//        URL url = this.getClass().getClassLoader().getResource(packageName.replaceAll("\\.", "/"));
+//        File dir = new File(url.getFile());
+//        for (File file : dir.listFiles()) {
+//            if (file.isDirectory()) {
+//                scannerClass(packageName + "." + file.getName());
+//            } else {
+//                classNameList.add(packageName + "." + file.getName().replace(".class", "").trim());
+//            }
+//        }
+        classNameList.add(packageName + "." + "UserServiceImpl");
     }
 
 }
