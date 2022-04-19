@@ -22,7 +22,6 @@ import java.util.Scanner;
  */
 public class Client {
 
-
     public static void main(String[] args) {
         Bootstrap bootstrap = new Bootstrap();
 
@@ -45,12 +44,34 @@ public class Client {
             Scanner scanner = new Scanner(System.in);
 
             while (scanner.hasNextLine()) {
-                ChatMsg.Msg.Builder builder = ChatMsg.Msg.newBuilder();
-                ChatMsg.Msg msg = builder.setContent(scanner.nextLine())
-                        .setSenderId(100L)
-                        .setReceiverId(333L)
-                        .build();
-                channelFuture.channel().writeAndFlush(msg);
+                String input = scanner.nextLine();
+                String[] split = input.split(":");
+                // login:1:zhangsan:20
+                // login:2:lisi:30
+                // login:3:wangwu:30
+                if (input.startsWith("login:")) {
+
+                    ChatMsg.Msg.Builder builder = ChatMsg.Msg.newBuilder();
+                    builder.setUserId(Long.parseLong(split[1]));
+                    builder.setUsername(split[2]);
+                    builder.setAge(Integer.parseInt(split[3]));
+                    ChatMsg.Msg msg = builder.build();
+                    channelFuture.channel().writeAndFlush(msg);
+                    System.out.println("客户端：登录消息发送成功");
+                }
+
+                // chat:1:2:hello
+                // chat:1:3:hello
+                // chat:1:all:hello
+                if (input.startsWith("chat:")) {
+                    ChatMsg.Msg.Builder builder = ChatMsg.Msg.newBuilder();
+                    ChatMsg.Msg msg = builder.setSenderId(Long.parseLong(split[1]))
+                            .setReceiverId(Long.parseLong(split[2]))
+                            .setContent(split[3])
+                            .build();
+                    channelFuture.channel().writeAndFlush(msg);
+                    System.out.println("客户端：聊天消息发送成功");
+                }
             }
 
             channelFuture.channel().closeFuture().sync();

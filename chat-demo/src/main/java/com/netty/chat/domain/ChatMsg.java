@@ -41,6 +41,30 @@ public final class ChatMsg {
      */
     com.google.protobuf.ByteString
         getContentBytes();
+
+    /**
+     * <code>int64 userId = 4;</code>
+     * @return The userId.
+     */
+    long getUserId();
+
+    /**
+     * <code>string username = 5;</code>
+     * @return The username.
+     */
+    java.lang.String getUsername();
+    /**
+     * <code>string username = 5;</code>
+     * @return The bytes for username.
+     */
+    com.google.protobuf.ByteString
+        getUsernameBytes();
+
+    /**
+     * <code>int32 age = 6;</code>
+     * @return The age.
+     */
+    int getAge();
   }
   /**
    * Protobuf type {@code domain.Msg}
@@ -56,6 +80,7 @@ public final class ChatMsg {
     }
     private Msg() {
       content_ = "";
+      username_ = "";
     }
 
     @java.lang.Override
@@ -102,6 +127,22 @@ public final class ChatMsg {
               java.lang.String s = input.readStringRequireUtf8();
 
               content_ = s;
+              break;
+            }
+            case 32: {
+
+              userId_ = input.readInt64();
+              break;
+            }
+            case 42: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              username_ = s;
+              break;
+            }
+            case 48: {
+
+              age_ = input.readInt32();
               break;
             }
             default: {
@@ -196,6 +237,66 @@ public final class ChatMsg {
       }
     }
 
+    public static final int USERID_FIELD_NUMBER = 4;
+    private long userId_;
+    /**
+     * <code>int64 userId = 4;</code>
+     * @return The userId.
+     */
+    @java.lang.Override
+    public long getUserId() {
+      return userId_;
+    }
+
+    public static final int USERNAME_FIELD_NUMBER = 5;
+    private volatile java.lang.Object username_;
+    /**
+     * <code>string username = 5;</code>
+     * @return The username.
+     */
+    @java.lang.Override
+    public java.lang.String getUsername() {
+      java.lang.Object ref = username_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        username_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string username = 5;</code>
+     * @return The bytes for username.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getUsernameBytes() {
+      java.lang.Object ref = username_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        username_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int AGE_FIELD_NUMBER = 6;
+    private int age_;
+    /**
+     * <code>int32 age = 6;</code>
+     * @return The age.
+     */
+    @java.lang.Override
+    public int getAge() {
+      return age_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -219,6 +320,15 @@ public final class ChatMsg {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(content_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, content_);
       }
+      if (userId_ != 0L) {
+        output.writeInt64(4, userId_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(username_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, username_);
+      }
+      if (age_ != 0) {
+        output.writeInt32(6, age_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -238,6 +348,17 @@ public final class ChatMsg {
       }
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(content_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, content_);
+      }
+      if (userId_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(4, userId_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(username_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, username_);
+      }
+      if (age_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(6, age_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -260,6 +381,12 @@ public final class ChatMsg {
           != other.getReceiverId()) return false;
       if (!getContent()
           .equals(other.getContent())) return false;
+      if (getUserId()
+          != other.getUserId()) return false;
+      if (!getUsername()
+          .equals(other.getUsername())) return false;
+      if (getAge()
+          != other.getAge()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -279,6 +406,13 @@ public final class ChatMsg {
           getReceiverId());
       hash = (37 * hash) + CONTENT_FIELD_NUMBER;
       hash = (53 * hash) + getContent().hashCode();
+      hash = (37 * hash) + USERID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getUserId());
+      hash = (37 * hash) + USERNAME_FIELD_NUMBER;
+      hash = (53 * hash) + getUsername().hashCode();
+      hash = (37 * hash) + AGE_FIELD_NUMBER;
+      hash = (53 * hash) + getAge();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -418,6 +552,12 @@ public final class ChatMsg {
 
         content_ = "";
 
+        userId_ = 0L;
+
+        username_ = "";
+
+        age_ = 0;
+
         return this;
       }
 
@@ -447,6 +587,9 @@ public final class ChatMsg {
         result.senderId_ = senderId_;
         result.receiverId_ = receiverId_;
         result.content_ = content_;
+        result.userId_ = userId_;
+        result.username_ = username_;
+        result.age_ = age_;
         onBuilt();
         return result;
       }
@@ -504,6 +647,16 @@ public final class ChatMsg {
         if (!other.getContent().isEmpty()) {
           content_ = other.content_;
           onChanged();
+        }
+        if (other.getUserId() != 0L) {
+          setUserId(other.getUserId());
+        }
+        if (!other.getUsername().isEmpty()) {
+          username_ = other.username_;
+          onChanged();
+        }
+        if (other.getAge() != 0) {
+          setAge(other.getAge());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -671,6 +824,144 @@ public final class ChatMsg {
         onChanged();
         return this;
       }
+
+      private long userId_ ;
+      /**
+       * <code>int64 userId = 4;</code>
+       * @return The userId.
+       */
+      @java.lang.Override
+      public long getUserId() {
+        return userId_;
+      }
+      /**
+       * <code>int64 userId = 4;</code>
+       * @param value The userId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setUserId(long value) {
+        
+        userId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 userId = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearUserId() {
+        
+        userId_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object username_ = "";
+      /**
+       * <code>string username = 5;</code>
+       * @return The username.
+       */
+      public java.lang.String getUsername() {
+        java.lang.Object ref = username_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          username_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string username = 5;</code>
+       * @return The bytes for username.
+       */
+      public com.google.protobuf.ByteString
+          getUsernameBytes() {
+        java.lang.Object ref = username_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          username_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string username = 5;</code>
+       * @param value The username to set.
+       * @return This builder for chaining.
+       */
+      public Builder setUsername(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        username_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string username = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearUsername() {
+        
+        username_ = getDefaultInstance().getUsername();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string username = 5;</code>
+       * @param value The bytes for username to set.
+       * @return This builder for chaining.
+       */
+      public Builder setUsernameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        username_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int age_ ;
+      /**
+       * <code>int32 age = 6;</code>
+       * @return The age.
+       */
+      @java.lang.Override
+      public int getAge() {
+        return age_;
+      }
+      /**
+       * <code>int32 age = 6;</code>
+       * @param value The age to set.
+       * @return This builder for chaining.
+       */
+      public Builder setAge(int value) {
+        
+        age_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 age = 6;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearAge() {
+        
+        age_ = 0;
+        onChanged();
+        return this;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -738,10 +1029,11 @@ public final class ChatMsg {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\034src/main/resources/Msg.proto\022\006domain\"<" +
+      "\n\034src/main/resources/Msg.proto\022\006domain\"k" +
       "\n\003Msg\022\020\n\010senderId\030\001 \001(\003\022\022\n\nreceiverId\030\002 " +
-      "\001(\003\022\017\n\007content\030\003 \001(\tB \n\025com.netty.chat.d" +
-      "omainB\007ChatMsgb\006proto3"
+      "\001(\003\022\017\n\007content\030\003 \001(\t\022\016\n\006userId\030\004 \001(\003\022\020\n\010" +
+      "username\030\005 \001(\t\022\013\n\003age\030\006 \001(\005B \n\025com.netty" +
+      ".chat.domainB\007ChatMsgb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -752,7 +1044,7 @@ public final class ChatMsg {
     internal_static_domain_Msg_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_domain_Msg_descriptor,
-        new java.lang.String[] { "SenderId", "ReceiverId", "Content", });
+        new java.lang.String[] { "SenderId", "ReceiverId", "Content", "UserId", "Username", "Age", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

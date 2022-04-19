@@ -8,21 +8,12 @@ package domain;
 option java_package = "com.netty.chat.domain";
 
 // 定义导出的java类名
-option java_outer_classname = "ChatMsg";
+option java_outer_classname = "LoginMsg";
 
-// protoc --java_out=./src/main/java ./src/main/resources/Msg.proto
+// protoc --java_out=./src/main/java ./src/main/resources/LoginMsg.proto
 
 message Msg {
-
-    int64 senderId = 1;
-    int64 receiverId = 2;
-    string content = 3;
-
-
-    int64 userId = 4;
-    string username = 5;
-    int32 age = 6;
-
-
-
+    int64 userId = 1;
+    string username = 2;
+    int32 age = 3;
 }
