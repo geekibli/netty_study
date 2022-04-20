@@ -4,8 +4,10 @@ package com.netty.chat;
 
 import io.netty.channel.Channel;
 
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 /**
  * @Author gaolei
@@ -31,5 +33,7 @@ public class RegisterTable {
         return online_channel_map.size();
     }
 
-
+    public static List<Channel> getAll(){
+        return online_channel_map.values().stream().collect(Collectors.toList());
+    }
 }

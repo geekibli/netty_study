@@ -2,7 +2,7 @@ package com.netty.chat.server;
 
 import com.netty.chat.codec.SimpleProtobufDecoder;
 import com.netty.chat.codec.SimpleProtobufEncoder;
-import com.netty.chat.handler.ServerLoginHandler2;
+import com.netty.chat.handler.ServerLoginHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.channel.ChannelFuture;
@@ -40,8 +40,7 @@ public class ChatServer {
                         pipeline.addLast(new LoggingHandler(LogLevel.INFO));
                         pipeline.addLast(new SimpleProtobufDecoder());
                         pipeline.addLast(new SimpleProtobufEncoder());
-                        pipeline.addLast( new ServerLoginHandler2());
-//                        pipeline.addLast(new ServerMsgHandler());
+                        pipeline.addLast(new ServerLoginHandler());
                     }
                 });
 

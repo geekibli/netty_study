@@ -17,7 +17,6 @@ public class SimpleProtobufDecoder extends ByteToMessageDecoder {
 
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf byteBuf, List<Object> list) throws Exception {
-        System.out.println("进入 SimpleProtobufDecoder。。。");
         byteBuf.markReaderIndex();
         short magic = byteBuf.readShort();
         if (magic != ProtoInstant.MAGIC_CODE) {

@@ -4,6 +4,7 @@ package com.netty.chat.client;
 import com.netty.chat.codec.SimpleProtobufDecoder;
 import com.netty.chat.codec.SimpleProtobufEncoder;
 import com.netty.chat.domain.ChatMsg;
+import com.netty.chat.handler.ClientLoginHandler;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -57,6 +58,7 @@ public class Client {
                     builder.setAge(Integer.parseInt(split[3]));
                     ChatMsg.Msg msg = builder.build();
                     channelFuture.channel().writeAndFlush(msg);
+                    channelFuture.channel().pipeline().addLast(new ClientLoginHandler());
                     System.out.println("客户端：登录消息发送成功");
                 }
 
