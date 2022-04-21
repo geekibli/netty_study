@@ -20,6 +20,7 @@ public class MyClient {
                 OutputStream outputStream = socket.getOutputStream();
                 outputStream.write("请求连接...".getBytes());
                 outputStream.flush();
+
                 InputStream inputStream = socket.getInputStream();
                 byte[] buffer = new byte[1024];
                 inputStream.read(buffer, 0, inputStream.read());

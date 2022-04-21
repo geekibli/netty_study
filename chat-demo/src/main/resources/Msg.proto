@@ -1,0 +1,28 @@
+// 使用的proto的版本
+syntax = "proto3";
+
+// 定义包名称，如果别的.proto文件需要使用的话，导入包的时候可以使用
+package domain;
+
+// 定义proto生成的java类的包名
+option java_package = "com.netty.chat.domain";
+
+// 定义导出的java类名
+option java_outer_classname = "ChatMsg";
+
+// protoc --java_out=./src/main/java ./src/main/resources/Msg.proto
+
+message Msg {
+
+    int64 senderId = 1;
+    int64 receiverId = 2;
+    string content = 3;
+
+
+    int64 userId = 4;
+    string username = 5;
+    int32 age = 6;
+
+
+
+}
