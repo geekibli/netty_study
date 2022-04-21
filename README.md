@@ -112,6 +112,10 @@ Netty is a NIO client server framework which enables quick and easy development 
 - [55.单体IM基础实战：消息构造器](https://github.com/geekibli/netty/blob/gaolei/note/55.单体IM基础实战：消息构造器.md)
 - [56.单体IM基础实战：消息发送器](https://github.com/geekibli/netty/blob/gaolei/note/56.单体IM基础实战：消息发送器.md)
 - [57.单体IM基础实战：响应处理器](https://github.com/geekibli/netty/blob/gaolei/note/57.单体IM基础实战：响应处理器.md)
+- [58.基础实战：服务端登录处理](https://github.com/geekibli/netty/blob/gaolei/note/58.基础实战：服务端登录处理.md)
+- [59.基础实战：业务逻辑异步处理](https://github.com/geekibli/netty/blob/gaolei/note/59.基础实战：业务逻辑异步处理.md)
+- [60.单体IM核心编程：服务端会话管理](https://github.com/geekibli/netty/blob/gaolei/note/60.%20单体IM核心编程：服务端会话管理.md)
+
 
 ## 其他笔记
 
