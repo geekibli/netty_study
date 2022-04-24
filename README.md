@@ -59,6 +59,9 @@
 
 - [SpringBoot集成protobuf实战](https://github.com/geekibli/netty/blob/gaolei/note/SpringBoot集成protobuf实战.md)
 - [mac安装protobuf教程](https://github.com/geekibli/netty/blob/gaolei/note/mac安装protobuf教程.md)
+- [NIO实现Reactor单线程模型]()
+- [NIO实现Reactor多线程模型]()
+- [NIO实现主从Reactor多线程模型]()
 
 
 ## Netty面试题
