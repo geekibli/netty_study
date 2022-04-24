@@ -3,14 +3,12 @@ package com.io.netty.bio.socket;
 import java.io.IOException;
 import java.net.*;
 
-/**
- * Created by zhaozhou on 2018/9/28.
- */
+
 public class ExceptionTest {
 
     public static void UnknownHostExceptionTest() {
         try {
-            Socket socket = new Socket("localhost11", 9999);
+            Socket socket = new Socket("localhost11", 9090);
         } catch (UnknownHostException e) {
             System.out.println("UnknownHostException: e=" + e.getMessage());
         } catch (IOException e) {
@@ -31,7 +29,7 @@ public class ExceptionTest {
 
     public static void SocketTimeoutExceptionTest() {
         try {
-            Socket socket = new Socket("localhost", 9999);
+            Socket socket = new Socket("localhost", 9090);
         } catch (SocketTimeoutException e) {
             System.out.println("SocketTimeoutException: e=" + e.getMessage());
         } catch (IOException e) {
@@ -41,7 +39,7 @@ public class ExceptionTest {
 
     public static void BindExceptionTest() {
         try {
-            Socket socket = new Socket("localhost", 9999, InetAddress.getByName("127.0.0.1"), 80);
+            Socket socket = new Socket("localhost", 9090, InetAddress.getByName("127.0.0.1"), 80);
         } catch (BindException e) {
             System.out.println("BindException: e=" + e.getMessage());
         } catch (IOException e) {

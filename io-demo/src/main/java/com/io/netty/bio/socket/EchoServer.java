@@ -3,12 +3,9 @@ package com.io.netty.bio.socket;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-/**
- * Created by zhaozhou on 2018/9/28.
- */
 public class EchoServer {
 
-    static final int PORT = 9999;
+    static final int PORT = 9090;
 
     public static void start(){
         try{

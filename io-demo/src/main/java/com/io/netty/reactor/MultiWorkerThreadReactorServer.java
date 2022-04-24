@@ -11,7 +11,6 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 /**
- * Created by zhaozhou on 2018/10/12.
  * 多工作线程的reactor模式
  */
 public class MultiWorkerThreadReactorServer {
@@ -136,7 +135,7 @@ public class MultiWorkerThreadReactorServer {
 
 
     public static void main(String[] args) {
-        BasicReactorServer.start(9999);
+        BasicReactorServer.start(9090);
     }
 
 }

@@ -10,12 +10,9 @@ import java.nio.channels.CompletionHandler;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
 
-/**
- * Created by zhaozhou on 2018/10/15.
- */
 public class Preactor {
 
-    private final static int port = 9999;
+    private final static int port = 9090;
 
     public static void start() throws IOException {
 

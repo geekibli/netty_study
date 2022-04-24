@@ -1,15 +1,14 @@
 package com.io.netty.bio.serversocket;
 
-import com.zhaozhou.demo.bio.socket.EchoServer;
 
+import com.io.netty.bio.socket.EchoServer;
+
+import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Created by zhaozhou on 2018/9/28.
- */
 public class BacklogTest {
 
 
@@ -22,7 +21,7 @@ class Client {
         List<Socket> sockets = new LinkedList<Socket>();
         while (cnt++ < 10) {
             try {
-                Socket socket = new Socket("", 9999);
+                Socket socket = new Socket("localhost", 9090);
                 System.out.println("connect server success, cnt=" + cnt);
                 sockets.add(socket);
             } catch (Exception e) {
@@ -34,7 +33,10 @@ class Client {
         for (Socket s : sockets) {
             try {
                 if (s.isConnected()) {
-                    s.close();
+                    OutputStream outputStream = s.getOutputStream();
+                    outputStream.write((s.getLocalPort() + "链接server").getBytes());
+                    outputStream.flush();
+                    //s.close();
                 }
             } catch (Exception e) {
                 e.getMessage();
@@ -48,8 +50,8 @@ class Client {
 class Server {
     public static void main(String[] args) {
         try {
-            ServerSocket serverSocket = new ServerSocket(9999, 2);
-            System.out.println("server listen on port:" + 9999);
+            ServerSocket serverSocket = new ServerSocket(9090, 2);
+            System.out.println("server listen on port:" + 9090);
             Thread.sleep(20000);
             while (true) {
                 try {

@@ -8,9 +8,6 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 
-/**
- * Created by zhaozhou on 2018/8/6.
- */
 public class NioEchoServer {
 
     private static final int SELECTOR_TIMEOUT = 1000;
@@ -91,7 +88,7 @@ public class NioEchoServer {
 
     public static void main(String[] args) {
         try {
-            new NioEchoServer().start(9999);
+            new NioEchoServer().start(9090);
         } catch (Exception e) {
             e.printStackTrace();
         }

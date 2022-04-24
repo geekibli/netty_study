@@ -4,9 +4,7 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
 
-/**
- * Created by zhaozhou on 2018/9/28.
- */
+
 public class SocketOptionTest {
 
     public static void socketOption() {
@@ -17,7 +15,7 @@ public class SocketOptionTest {
             socket.setKeepAlive(true);
             socket.setTcpNoDelay(true);
             socket.setSendBufferSize(1000);
-            SocketAddress address = new InetSocketAddress("127.0.0.1", 9999);
+            SocketAddress address = new InetSocketAddress("127.0.0.1", 9090);
             socket.connect(address);
             socket.getOutputStream().write("this is a test!".getBytes());
 

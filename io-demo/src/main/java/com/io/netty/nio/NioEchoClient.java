@@ -8,11 +8,8 @@ import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 import java.util.Scanner;
 
-/**
- * Created by zhaozhou on 2018/8/6.
- */
 public class NioEchoClient {
-    private static final int port = 9999;
+    private static final int port = 9090;
 
     private SocketChannel client = null;
 
@@ -95,7 +92,7 @@ public class NioEchoClient {
 
 
         thread.start();
-        client.start(9999);
+        client.start(9090);
 
     }
 }

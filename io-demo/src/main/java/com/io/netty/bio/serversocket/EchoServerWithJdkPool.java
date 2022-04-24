@@ -5,11 +5,8 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-/**
- * Created by zhaozhou on 2018/9/28.
- */
 public class EchoServerWithJdkPool {
-    private final static int PORT = 9999;
+    private final static int PORT = 9090;
     private final static int THREAD_IN_EACH_PROCESSOR = 2;
 
 

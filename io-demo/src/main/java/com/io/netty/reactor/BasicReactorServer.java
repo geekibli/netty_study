@@ -10,7 +10,6 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- * Created by zhaozhou on 2018/10/12.
  * 基本的reactor模式
  */
 public class BasicReactorServer {
@@ -119,6 +118,6 @@ public class BasicReactorServer {
 
 
     public static void main(String[] args) {
-        BasicReactorServer.start(9999);
+        BasicReactorServer.start(9090);
     }
 }

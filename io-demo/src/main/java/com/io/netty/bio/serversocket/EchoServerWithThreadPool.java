@@ -4,12 +4,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.LinkedList;
 
-/**
- * Created by zhaozhou on 2018/9/28.
- */
 public class EchoServerWithThreadPool extends ThreadGroup {
 
-    final private static int PORT = 9999;
+    final private static int PORT = 9090;
 
     private LinkedList<Runnable> workQueue;
     private int threadID = 0;
@@ -37,7 +34,9 @@ public class EchoServerWithThreadPool extends ThreadGroup {
 
     protected synchronized Runnable getTask() throws InterruptedException {
         while (workQueue.size() == 0) {
-            if (isClose) return null;
+            if (isClose) {
+                return null;
+            }
             wait();
         }
         return workQueue.removeFirst();
@@ -76,7 +75,7 @@ public class EchoServerWithThreadPool extends ThreadGroup {
             System.out.println("server listen on port:" + PORT);
             while (true) {
                 Socket client = serverSocket.accept();
-                System.out.println("receive client connect, localPort=" + client.getPort());
+                System.out.println("current thread : " + Thread.currentThread().getName() + "receive client connect, localPort=" + client.getPort());
                 ClientHandler handler = new ClientHandler(client);
                 threadPool.execute(handler);
             }
@@ -106,9 +105,12 @@ public class EchoServerWithThreadPool extends ThreadGroup {
             byte[] buf = new byte[1024];
             try {
                 while (true) {
+                    if (!this.client.isConnected()) {
+                        return;
+                    }
                     int cnt = this.client.getInputStream().read(buf, 0, 1023);
                     if (cnt > 0) {
-                        System.out.println("receive msg from client:" + new String(buf));
+                        System.out.println("receive msg from client:" + new String(buf) + "  " + Thread.currentThread().getName());
                         this.client.getOutputStream().write(buf, 0, cnt);
                     }
                 }
@@ -144,8 +146,9 @@ public class EchoServerWithThreadPool extends ThreadGroup {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                if (task == null) return;
-
+                if (task == null) {
+                    return;
+                }
                 try {
                     task.run();
                 } catch (Exception e) {

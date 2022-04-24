@@ -6,9 +6,7 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
 
-/**
- * Created by zhaozhou on 2018/9/28.
- */
+
 public class ConstructorTest {
 
 
@@ -21,7 +19,7 @@ public class ConstructorTest {
     public static Socket openSocket1() throws IOException {
         System.out.println("test1");
         Socket socket = new Socket();
-        SocketAddress socketAddress = new InetSocketAddress("127.0.0.1", 9999);
+        SocketAddress socketAddress = new InetSocketAddress("127.0.0.1", 9090);
         socket.connect(socketAddress, 10000);
         return socket;
     }
@@ -96,7 +94,7 @@ public class ConstructorTest {
      */
     public static void socketTest2() {
         try {
-            Socket socket = ConstructorTest.openSocket2("127.0.0.1", 9999);
+            Socket socket = ConstructorTest.openSocket2("127.0.0.1", 9090);
             String msg = "Contructor Socket(String host, int port)  test!";
             ConstructorTest.socketRWTest(socket, msg);
         } catch (Exception e) {
@@ -110,7 +108,7 @@ public class ConstructorTest {
      */
     public static void socketTest3() {
         try {
-            Socket socket = ConstructorTest.openSocket3("127.0.0.1", 9999, 7777);
+            Socket socket = ConstructorTest.openSocket3("127.0.0.1", 9090, 7777);
             String msg = "Contructor Socket(InetAddress address, int port, InetAddress localAddr, int localPort) test!";
             ConstructorTest.socketRWTest(socket, msg);
         } catch (Exception e) {

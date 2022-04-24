@@ -12,7 +12,6 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 /**
- * Created by zhaozhou on 2018/10/12.
  * 多reactor的reactor模式
  */
 public class MultiReactorReactorServer {
@@ -114,7 +113,7 @@ public class MultiReactorReactorServer {
                     buffer.clear();
                 } while (cnt >= buffer.capacity());
                 System.out.println("read data num:" + total);
-                System.out.println("recv msg:" + msg);
+                System.out.println("current thread: " + Thread.currentThread().getName() + " recv msg:" + msg);
 
                 //回写数据
                 ByteBuffer sendBuf = ByteBuffer.allocate(msg.getBytes().length + 1);
@@ -136,7 +135,7 @@ public class MultiReactorReactorServer {
 
 
     public static void main(String[] args) {
-        BasicReactorServer.start(9999);
+        BasicReactorServer.start(9090);
     }
 
 

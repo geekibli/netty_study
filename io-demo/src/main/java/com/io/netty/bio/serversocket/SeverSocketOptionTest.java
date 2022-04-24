@@ -13,7 +13,7 @@ public class SeverSocketOptionTest {
             ServerSocket serverSocket = new ServerSocket();
             serverSocket.setReuseAddress(true);
             serverSocket.setSoTimeout(1000);
-            SocketAddress address = new InetSocketAddress("127.0.0.1", 9999);
+            SocketAddress address = new InetSocketAddress("127.0.0.1", 9090);
             serverSocket.bind(address);
             serverSocket.accept();
         } catch (Exception e) {
