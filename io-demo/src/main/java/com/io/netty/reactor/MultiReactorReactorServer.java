@@ -1,6 +1,4 @@
-package com.ibli.netty.share.reactor.v2;
-
-import com.ibli.netty.share.reactor.v1.BasicReactorServer;
+package com.io.netty.reactor;
 
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
@@ -14,12 +12,10 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 /**
- * @Author gaolei
- * @Date 2022/4/22 下午8:29
- * @Version 1.0
+ * Created by zhaozhou on 2018/10/12.
+ * 多reactor的reactor模式
  */
-public class Server {
-
+public class MultiReactorReactorServer {
 
     public static void start(int port) {
         try {
@@ -67,7 +63,6 @@ public class Server {
             this.serverSocketChannel = serverSocketChannel;
         }
 
-        @Override
         public void run() {
             try {
                 SocketChannel socketChannel = serverSocketChannel.accept();
@@ -105,7 +100,6 @@ public class Server {
             this.socketChannel = socketChannel;
         }
 
-        @Override
         public void run() {
             try {
                 ByteBuffer buffer = ByteBuffer.allocate(1024);
@@ -138,12 +132,12 @@ public class Server {
                 }
             }
         }
-
-
-        public static void main(String[] args) {
-            Server.start(9090);
-        }
-
-
     }
+
+
+    public static void main(String[] args) {
+        BasicReactorServer.start(9999);
+    }
+
+
 }
