@@ -1,4 +1,4 @@
-package com.io.netty.nio;
+package com.io.netty.reactor;
 
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
@@ -8,7 +8,7 @@ import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 import java.util.Scanner;
 
-public class NioEchoClient {
+public class ReactorClient {
     private static final int port = 9090;
 
     private SocketChannel client = null;
@@ -63,7 +63,7 @@ public class NioEchoClient {
 
     public static void main(String[] args) {
 
-        final NioEchoClient client = new NioEchoClient();
+        final ReactorClient client = new ReactorClient();
 
         Thread thread = new Thread(new Runnable() {
             @Override
@@ -81,6 +81,7 @@ public class NioEchoClient {
                             buffer.put(line.getBytes());
                             buffer.flip();
                             client.getClient().write(buffer);
+                            System.out.println("write end ...  " + client.getClient().hashCode());
                         } else {
                             System.out.println("还未连接上服务器！");
                         }

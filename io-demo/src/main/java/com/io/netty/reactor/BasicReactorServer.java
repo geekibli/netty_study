@@ -60,6 +60,7 @@ public class BasicReactorServer {
             this.serverSocketChannel = serverSocketChannel;
         }
 
+        @Override
         public void run() {
             try {
                 SocketChannel socketChannel = serverSocketChannel.accept();
@@ -82,6 +83,7 @@ public class BasicReactorServer {
             this.socketChannel = socketChannel;
         }
 
+        @Override
         public void run() {
             try {
                 ByteBuffer buffer = ByteBuffer.allocate(1024);
@@ -95,7 +97,7 @@ public class BasicReactorServer {
                     }
                     buffer.clear();
                 } while (cnt >= buffer.capacity());
-                System.out.println("read data num:" + total);
+                System.out.println("read data num:" + total + "thread :  " + Thread.currentThread().getName());
                 System.out.println("recv msg:" + msg);
 
                 //回写数据

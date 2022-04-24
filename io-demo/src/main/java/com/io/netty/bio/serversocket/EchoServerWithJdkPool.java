@@ -47,7 +47,7 @@ public class EchoServerWithJdkPool {
                 while (true) {
                     int cnt = this.client.getInputStream().read(buf, 0, 1023);
                     if (cnt > 0) {
-                        System.out.println("receive msg from client:" + new String(buf));
+                        System.out.println("receive msg from client:" + new String(buf) + " thread name : " + Thread.currentThread().getName());
                         this.client.getOutputStream().write(buf, 0, cnt);
                     }
                 }

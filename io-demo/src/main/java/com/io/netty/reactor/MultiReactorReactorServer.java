@@ -25,7 +25,7 @@ public class MultiReactorReactorServer {
             serverSocketChannel.bind(new InetSocketAddress(port), 128);
 
             //注册accept事件
-            serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT, new BasicReactorServer.Acceptor(selector, serverSocketChannel));
+            serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT, new Acceptor(selector, serverSocketChannel));
 
             //阻塞等待就绪事件
             while (selector.select() > 0) {
@@ -62,11 +62,12 @@ public class MultiReactorReactorServer {
             this.serverSocketChannel = serverSocketChannel;
         }
 
+        @Override
         public void run() {
             try {
                 SocketChannel socketChannel = serverSocketChannel.accept();
                 socketChannel.configureBlocking(false);
-                socketChannel.register(selector, SelectionKey.OP_READ, new BasicReactorServer.DispatchHandler(socketChannel));
+                socketChannel.register(selector, SelectionKey.OP_READ, new DispatchHandler(socketChannel));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -86,6 +87,7 @@ public class MultiReactorReactorServer {
             this.socketChannel = socketChannel;
         }
 
+        @Override
         public void run() {
             executor.execute(new ReaderHandler(socketChannel));
         }
@@ -99,6 +101,7 @@ public class MultiReactorReactorServer {
             this.socketChannel = socketChannel;
         }
 
+        @Override
         public void run() {
             try {
                 ByteBuffer buffer = ByteBuffer.allocate(1024);
@@ -135,7 +138,7 @@ public class MultiReactorReactorServer {
 
 
     public static void main(String[] args) {
-        BasicReactorServer.start(9090);
+        MultiReactorReactorServer.start(9090);
     }
 
 

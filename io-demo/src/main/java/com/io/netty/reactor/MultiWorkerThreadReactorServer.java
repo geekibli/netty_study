@@ -27,16 +27,16 @@ public class MultiWorkerThreadReactorServer {
             serverSocketChannel.bind(new InetSocketAddress(port), 128);
 
             //注册accept事件
-            serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT, new BasicReactorServer.Acceptor(selector, serverSocketChannel));
+            serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
 
             DispatchHandler[] handlers = new DispatchHandler[PROCESS_NUM];
-            for (DispatchHandler h : handlers) {
-                h = new DispatchHandler();
+            for (int i = 0; i < PROCESS_NUM; i++) {
+                handlers[i] = new DispatchHandler(i);
             }
 
             int count = 0;
 
-            //阻塞等待就绪事件
+            // 阻塞等待就绪事件
             while (selector.select() > 0) {
                 Set<SelectionKey> keys = selector.selectedKeys();
                 Iterator<SelectionKey> iterator = keys.iterator();
@@ -46,10 +46,14 @@ public class MultiWorkerThreadReactorServer {
                     SelectionKey key = iterator.next();
                     iterator.remove();
                     if (key.isAcceptable()) {
-                        SocketChannel socketChannel = serverSocketChannel.accept();
+                        ServerSocketChannel serverSocketChannel1 = (ServerSocketChannel) key.channel();
+                        SocketChannel socketChannel = serverSocketChannel1.accept();
                         socketChannel.configureBlocking(false);
-                        handlers[count++ % PROCESS_NUM].addChannel(socketChannel);
+                        int index = count++ % PROCESS_NUM;
+                        handlers[index].addChannel(socketChannel);
+                        System.out.println("add addChannel to handler-" + index);
                     }
+
                     keys.remove(key);
                 }
             }
@@ -63,68 +67,82 @@ public class MultiWorkerThreadReactorServer {
      * 读取数据处理
      */
     public static class DispatchHandler {
-
+        private int id;
         private static Executor executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() << 1);
         private Selector selector;
 
-        public DispatchHandler() throws IOException {
+        public DispatchHandler(int id) throws IOException {
+            this.id = id;
             selector = Selector.open();
             this.start();
         }
 
-        public void addChannel(SocketChannel socketChannel) throws ClosedChannelException {
+        public void addChannel(SocketChannel socketChannel) throws IOException {
+            System.out.println(socketChannel.getRemoteAddress());
+            System.out.println(socketChannel.getLocalAddress());
+            System.out.println(socketChannel.hashCode());
             socketChannel.register(selector, SelectionKey.OP_READ);
             this.selector.wakeup();
         }
 
 
         public void start() {
+            System.out.println("handler start ... ");
             executor.execute(new Runnable() {
-
                 @Override
                 public void run() {
                     while (true) {
+                        try {
+                            if (selector.select(5000) == 0) {
+                                System.out.println("wait  5 s");
+                                continue;
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                         Set<SelectionKey> keys = selector.selectedKeys();
-                        if (keys == null || keys.isEmpty()) {
-                            Iterator<SelectionKey> iterator = keys.iterator();
-                            if (iterator.hasNext()) {
-                                SelectionKey key = iterator.next();
-                                SocketChannel socketChannel = (SocketChannel) key.channel();
-                                iterator.remove();
-                                if (key.isReadable()) {
-                                    try {
-                                        ByteBuffer buffer = ByteBuffer.allocate(1024);
-                                        int cnt = 0, total = 0;
-                                        String msg = "";
-                                        do {
-                                            cnt = socketChannel.read(buffer);
-                                            if (cnt > 0) {
-                                                total += cnt;
-                                                msg += new String(buffer.array());
-                                            }
-                                            buffer.clear();
-                                        } while (cnt >= buffer.capacity());
-                                        System.out.println("read data num:" + total);
-                                        System.out.println("recv msg:" + msg);
+                        Iterator<SelectionKey> iterator = keys.iterator();
+                        if (iterator.hasNext()) {
+                            SelectionKey key = iterator.next();
+                            SocketChannel socketChannel = (SocketChannel) key.channel();
+                            iterator.remove();
+                            if (key.isReadable()) {
+                                try {
+                                    ByteBuffer buffer = ByteBuffer.allocate(1024);
+                                    int cnt = 0, total = 0;
+                                    String msg = "";
+                                    do {
+                                        cnt = socketChannel.read(buffer);
+                                        if (cnt > 0) {
+                                            total += cnt;
+                                            msg += new String(buffer.array());
+                                        }
+                                        buffer.clear();
+                                    } while (cnt >= buffer.capacity());
+                                    System.out.println("read data num:" + total + "  handlerId : " + id + " thread name :  " + Thread.currentThread().getName());
+                                    System.out.println("recv msg:" + msg);
 
-                                        //回写数据
-                                        ByteBuffer sendBuf = ByteBuffer.allocate(msg.getBytes().length + 1);
-                                        sendBuf.put(msg.getBytes());
+                                    //回写数据
+//                                    ByteBuffer sendBuf = ByteBuffer.allocate(msg.getBytes().length + 1);
+                                    ByteBuffer sendBuf = ByteBuffer.allocate(128);
+                                    sendBuf.clear();
+                                    sendBuf.put("ok ok".getBytes());
+                                    sendBuf.flip();
+                                    while (sendBuf.hasRemaining()) {
                                         socketChannel.write(sendBuf);
-
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                        if (socketChannel != null) {
-                                            try {
-                                                socketChannel.close();
-                                            } catch (Exception ex) {
-                                                ex.printStackTrace();
-                                            }
+                                    }
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                    if (socketChannel != null) {
+                                        try {
+                                            socketChannel.close();
+                                        } catch (Exception ex) {
+                                            ex.printStackTrace();
                                         }
                                     }
                                 }
-                                keys.remove(key);
                             }
+                            keys.remove(key);
                         }
                     }
                 }
@@ -135,7 +153,7 @@ public class MultiWorkerThreadReactorServer {
 
 
     public static void main(String[] args) {
-        BasicReactorServer.start(9090);
+        MultiWorkerThreadReactorServer.start(9090);
     }
 
 }

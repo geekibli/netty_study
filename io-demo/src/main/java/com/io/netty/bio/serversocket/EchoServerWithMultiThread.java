@@ -18,7 +18,8 @@ public class EchoServerWithMultiThread {
                 try {
                     Socket client = serverSocket.accept();
                     System.out.println("receive client connect, localPort=" + client.getPort());
-                    new Thread(new EchoServer.HandlerServer(client)).start();
+//                    new Thread(new EchoServer.HandlerServer(client)).start();
+                    new Thread(new HandlerServer(client)).start();
                 } catch (Exception e) {
                     System.out.println("client exception,e=" + e.getMessage());
                 }
@@ -30,7 +31,7 @@ public class EchoServerWithMultiThread {
 
 
     public static void main(String[] args) {
-        EchoServer.start();
+        EchoServerWithMultiThread.start();
     }
 
 
@@ -49,7 +50,7 @@ public class EchoServerWithMultiThread {
                 while (true) {
                     int cnt = this.client.getInputStream().read(buf, 0, 1023);
                     if (cnt > 0) {
-                        System.out.println("receive msg from client:" + new String(buf));
+                        System.out.println("receive msg from client:  " + new String(buf) + "  " + Thread.currentThread().getName());
                         this.client.getOutputStream().write(buf, 0, cnt);
                     }
                 }
