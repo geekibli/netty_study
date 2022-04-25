@@ -55,7 +55,11 @@
 - [60.单体IM核心编程：服务端会话管理](https://github.com/geekibli/netty/blob/gaolei/note/60.%20单体IM核心编程：服务端会话管理.md)
 - [61.单体IM核心编程：单聊-端到端的聊天转发](https://github.com/geekibli/netty/blob/gaolei/note/61单体IM核心编程：单聊-端到端的聊天转发.md)
 - [62.单体IM核心编程：端到端的心跳处理](https://github.com/geekibli/netty/blob/gaolei/note/62单体IM核心编程：端到端的心跳处理.md)
-
+- [63.分布式高阶实战：亿级高并发IM架构](https://github.com/geekibli/netty/blob/gaolei/note/63.分布式高阶实战：亿级高并发IM架构.md)
+- [64.集群环境搭建](https://github.com/geekibli/netty/blob/gaolei/note/64.集群环境搭建.md)
+- [65.分布式高阶实战：Netty节点的命名服务](https://github.com/geekibli/netty/blob/gaolei/note/65.分布式高阶实战：Netty节点的命令服务.md)
+- [66.分布式高阶实战：Netty节点的注册与发现](https://github.com/geekibli/netty/blob/gaolei/note/66.分布式高阶实战：Netty节点的注册与发现.md)
+- [67.分布式高阶实战：Netty节点的负载均衡](https://github.com/geekibli/netty/blob/gaolei/note/67.分布式高阶实战：Netty节点的负载均衡.md)
 ## 其他笔记
 
 - [SpringBoot集成protobuf实战](https://github.com/geekibli/netty/blob/gaolei/note/SpringBoot集成protobuf实战.md)
