@@ -32,6 +32,7 @@ public class MultiWorkerThreadReactorServer {
             for (int i = 0; i < PROCESS_NUM; i++) {
                 handlers[i] = new DispatchHandler(i);
             }
+            System.out.println("handler init end ... ");
 
             int count = 0;
 
@@ -44,15 +45,17 @@ public class MultiWorkerThreadReactorServer {
                 while (iterator.hasNext()) {
                     SelectionKey key = iterator.next();
                     iterator.remove();
+                    System.out.println("have event......");
                     if (key.isAcceptable()) {
+                        System.out.println("accept event......");
                         ServerSocketChannel serverSocketChannel1 = (ServerSocketChannel) key.channel();
                         SocketChannel socketChannel = serverSocketChannel1.accept();
                         socketChannel.configureBlocking(false);
                         int index = count++ % PROCESS_NUM;
+                        System.out.println("index .... " + index);
                         handlers[index].addChannel(socketChannel);
                         System.out.println("add addChannel to handler-" + index);
                     }
-
                     keys.remove(key);
                 }
             }
@@ -92,8 +95,8 @@ public class MultiWorkerThreadReactorServer {
                 public void run() {
                     while (true) {
                         try {
-                            if (selector.select(5000) == 0) {
-                                System.out.println("wait  5 s");
+                            if (selector.select(10000) == 0) {
+                                System.out.println("wait  10 s");
                                 continue;
                             }
                         } catch (IOException e) {

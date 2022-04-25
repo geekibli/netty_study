@@ -2,7 +2,7 @@
 
 > 前置总结
 
-[**什么是Netty**]()
+[**什么是Netty**](https://github.com/geekibli/netty/blob/gaolei/note/0.什么是Netty.md)
 
 ## Netty打造百万级链接的IM系统
 
@@ -53,15 +53,17 @@
 - [58.基础实战：服务端登录处理](https://github.com/geekibli/netty/blob/gaolei/note/58.基础实战：服务端登录处理.md)
 - [59.基础实战：业务逻辑异步处理](https://github.com/geekibli/netty/blob/gaolei/note/59.基础实战：业务逻辑异步处理.md)
 - [60.单体IM核心编程：服务端会话管理](https://github.com/geekibli/netty/blob/gaolei/note/60.%20单体IM核心编程：服务端会话管理.md)
-
+- [61.单体IM核心编程：单聊-端到端的聊天转发](https://github.com/geekibli/netty/blob/gaolei/note/61单体IM核心编程：单聊-端到端的聊天转发.md)
+- [62.单体IM核心编程：端到端的心跳处理](https://github.com/geekibli/netty/blob/gaolei/note/62单体IM核心编程：端到端的心跳处理.md)
 
 ## 其他笔记
 
 - [SpringBoot集成protobuf实战](https://github.com/geekibli/netty/blob/gaolei/note/SpringBoot集成protobuf实战.md)
 - [mac安装protobuf教程](https://github.com/geekibli/netty/blob/gaolei/note/mac安装protobuf教程.md)
-- [NIO实现Reactor单线程模型]()
-- [NIO实现Reactor多线程模型]()
-- [NIO实现主从Reactor多线程模型]()
+- [NIO实现Reactor单线程模型](https://github.com/geekibli/netty/blob/gaolei/note/NIO实现Reactor单线程模型.md)
+- [NIO实现Reactor多线程模型](https://github.com/geekibli/netty/blob/gaolei/note/NIO实现Reactor多线程模型.md)
+- [NIO实现主从Reactor多线程模型](https://github.com/geekibli/netty/blob/gaolei/note/NIO实现主从Reactor多线程模型.md)
+- [Netty内存池（史上最全 + 5W字长文）](https://www.cnblogs.com/crazymakercircle/p/16181994.html)
 
 
 ## Netty面试题
