@@ -69,9 +69,18 @@
 - [78.亿级架构核心：流量预估](https://github.com/geekibli/netty_study/blob/gaolei/note/78.亿级架构核心：流量预估.md)
 - [79.亿级架构核心：流量架构——低并发系统，如何学到高并发的经验](https://github.com/geekibli/netty_study/blob/gaolei/note/79.亿级架构核心：流量架构——低并发系统，如何学到高并发的经验.md)
 - [80.亿级架构核心：流量架构](https://github.com/geekibli/netty_study/blob/gaolei/note/80.亿级架构核心：流量架构.md)
+- [81.亿级架构核心：存储架构——亿级库表的架构设计](https://github.com/geekibli/netty_study/blob/gaolei/note/81.亿级架构核心：存储架构——亿级库表的架构设计.md)
+- [82.亿级架构核心：存储架构——百亿级库表架构设计](https://github.com/geekibli/netty_study/blob/gaolei/note/82.亿级架构核心：存储架构——百亿级库表架构设计.md)
+- [83.亿级架构核心：存储架构——百亿级数据的异构查询](https://github.com/geekibli/netty_study/blob/gaolei/note/83.亿级架构核心：存储架构——百亿级数据的异构查询.md)
+- [84.亿级架构实操：亿级秒杀系统的业务架构、流量架构、数据架构](https://github.com/geekibli/netty_study/blob/gaolei/note/84.亿级架构实操：亿级秒杀系统的业务架构、流量架构、数据架构.md)
+- [85.亿级架构实操：服务层做到支撑亿级用户的高可用、高并发架构](https://github.com/geekibli/netty_study/blob/gaolei/note/85.亿级架构实操：服务层做到支撑亿级用户的高可用、高并发架构.md)
+- [86.实战篇：一键搞定令人头疼繁琐的分布式、微服务、高并发开发环境](https://github.com/geekibli/netty_study/blob/gaolei/note/86.实战篇：一键搞定令人头疼繁琐的分布式、微服务、高并发开发环境.md)
+- [87.亿级架构实操：秒杀学习案例的功能体](https://github.com/geekibli/netty_study/blob/gaolei/note/87.亿级架构实操：秒杀学习案例的功能体.md)
+- [88.亿级秒杀实操之服务层：注册中心理论实操](https://github.com/geekibli/netty_study/blob/gaolei/note/88.亿级秒杀实操之服务层：注册中心理论%26实操.md)
+- [89.亿级秒杀实操之服务层：配置中心理论实操](https://github.com/geekibli/netty_study/blob/gaolei/note/89.亿级秒杀实操之服务层：配置中心理论%26实操.md)
 - []()
 - []()
-- []()
+- 
 ## 其他笔记
 
 - [SpringBoot集成protobuf实战](https://github.com/geekibli/netty/blob/gaolei/note/SpringBoot集成protobuf实战.md)
